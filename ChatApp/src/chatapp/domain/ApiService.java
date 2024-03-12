@@ -11,7 +11,10 @@ import java.util.ArrayList;
  * @author m74048
  */
 public interface ApiService {
-    public abstract ArrayList<Contato> getAllContacts();
-    public abstract void createContact(Contato c);
-    public abstract void alterContact(Contato c);
+    ArrayList<Contato> getAllContacts();
+    void createContact(Contato c);
+    void sendMessage(Contato c, Mensagem m);
+    ArrayList<Mensagem> getAllMessages(Contato c);
+    void cleanAllMessages(Contato c);
+    void cleanAllMessages();
 }

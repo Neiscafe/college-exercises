@@ -1,15 +1,42 @@
 package chatapp.domain;
 
-public class Mensagem {
-    final String conteudo;
-    final String dataEnvio;
-    final String dataRecebida;
-    final Contato contato;
+import static java.util.UUID.randomUUID;
 
-    public Mensagem(String conteudo, String dataEnvio, String dataRecebida, Contato contato) {
+public class Mensagem {
+    private final String conteudo;
+    private final String dataEnvio;
+    private String dataLeitura;
+    private final String id = randomUUID().toString();
+    private final String senderId;
+
+    public Mensagem(String conteudo, String dataEnvio, String dataLeitura, String senderId) {
         this.conteudo = conteudo;
         this.dataEnvio = dataEnvio;
-        this.dataRecebida = dataRecebida;
-        this.contato = contato;
+        this.dataLeitura = dataLeitura;
+        this.senderId = senderId;
+    }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public String getDataEnvio() {
+        return dataEnvio;
+    }
+
+    public String getDataLeitura() {
+        return dataLeitura;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setDataLeitura(String dataLeitura) {
+        this.dataLeitura = dataLeitura;
     }
 }

@@ -4,6 +4,26 @@
  */
 package chatapp.data;
 
-public class MockContatoRepository {
+import chatapp.domain.ApiService;
+import chatapp.domain.Contato;
+import chatapp.domain.ContatoRepository;
+import java.util.ArrayList;
+
+public class MockContatoRepository implements ContatoRepository {
+    private final ApiService api;
+
+    public MockContatoRepository() {
+        api = new MockApiService();
+    }
+    
+    @Override
+    public ArrayList<Contato> getAllContatos() {
+        return api.getAllContacts();
+    }
+
+    @Override
+    public void criarContato(Contato c) {
+        api.createContact(c);
+    }
     
 }
