@@ -1,0 +1,13 @@
+lista = [x for x in range(1, 12)]
+print(lista)
+print(f"lista[:] {lista[:]}", )
+print(f"lista[:-1] {lista[:-1]}")
+print(f"lista[:-2] {lista[:-2]}")
+print(f"lista[-2:] {lista[-2:]}")
+print(f"lista[2:-2] {lista[2:-2]}")
+print(f"lista[-3:-2] {lista[-3:-2]}")
+print(f"lista[-3:] {lista[-3:]}")
+print(f"lista[-1:-2] {lista[-1:-2]}")
+print(f"lista[::] {lista[::]}")
+print(f"lista[::2] {lista[::2]}")
+print(f"lista[::-2] {lista[::-2]}")
