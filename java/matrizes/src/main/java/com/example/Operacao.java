@@ -8,7 +8,7 @@ public class Operacao {
         int[][] b = matrizB.getMatriz();
 
         if (a.length != b.length || a[0].length != b[0].length) {
-            throw new IllegalArgumentException("As matrizes precisam ter o mesmo tamanho para soma.");
+            throw new IllegalArgumentException("[soma] As matrizes precisam ter o mesmo tamanho para soma.");
         }
 
         int m = a.length;
@@ -29,21 +29,18 @@ public class Operacao {
         int[][] a = matrizA.getMatriz();
         int[][] b = matrizB.getMatriz();
 
-        if (a[0].length != b.length) {
-            throw new IllegalArgumentException("Número de colunas da matriz A deve ser igual ao número de linhas da matriz B para multiplicação.");
+        if (a.length != b.length || a[0].length != b[0].length) {
+            throw new IllegalArgumentException("[multiplica] As matrizes precisam ter o mesmo tamanho para multiplicação.");
         }
 
         int m = a.length;
-        int p = a[0].length;
-        int n = b[0].length;
+        int n = a[0].length;
 
         int[][] resultado = new int[m][n];
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                for (int k = 0; k < p; k++) {
-                    resultado[i][j] += a[i][k] * b[k][j];
-                }
+                resultado[i][j] = a[i][j] * b[i][j];
             }
         }
 
