@@ -22,6 +22,10 @@ public class NumeroComplexo {
         return equals(arg0);
     }
 
+    public NumeroComplexo conjugado() {
+        return new NumeroComplexo().inicializaNumero(this.real, -this.imaginario);
+    }
+
     public NumeroComplexo soma(NumeroComplexo arg0) {
         NumeroComplexo res = new NumeroComplexo();
         res.inicializaNumero(this.real + arg0.real, this.imaginario + arg0.imaginario);
@@ -41,13 +45,15 @@ public class NumeroComplexo {
         double bc = this.imaginario * arg0.real;
         return new NumeroComplexo().inicializaNumero(ac - bd, ad + bc);
     }
-    
+
     public NumeroComplexo divide(NumeroComplexo arg0) {
         double ac = this.real * arg0.real;
         double bd = this.imaginario * arg0.imaginario;
         double ad = this.real * arg0.imaginario;
         double bc = this.imaginario * arg0.real;
-        return new NumeroComplexo().inicializaNumero(ac + bd, ad + bc);
+        return new NumeroComplexo().inicializaNumero(
+                (ac + bd) / (Math.pow(arg0.real, 2) + Math.pow(arg0.imaginario, 2)),
+                (bc - ad) / (Math.pow(arg0.real, 2) + Math.pow(arg0.imaginario, 2)));
     }
 
     public double getReal() {
