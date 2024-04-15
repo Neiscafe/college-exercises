@@ -67,16 +67,16 @@ public class Operacao {
 
     public static String printar(int[][] matrizParaPrint){
         String mensagem = "";
-        StringBuilder builder = StringBuilder(mensagem);
-        mensagem.concat("[\n");
+        StringBuilder builder = new StringBuilder(mensagem);
+        builder.append("\n[\n");
         for(int[] innerArray : matrizParaPrint){
-            mensagem.concat("\t[\n");
+            builder.append("\t[\n");
             for(int p : innerArray){
-                mensagem.concat(String.format("\t\t%d\n", p)); 
+                builder.append(String.format("\t\t%d\n", p)); 
             }
-            mensagem.concat("\t]\n");
+            builder.append("\t]\n");
         }
-        mensagem.concat("]\n");
-        return mensagem;
+        builder.append("],\n");
+        return builder.toString();
     }
 }
