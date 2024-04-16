@@ -1,2 +1,4 @@
-lista1 = [1,2,3,4,5]
-lista2= [4,5,6,7,8]
+lista1 = [1,3,5]
+lista2= [2,4,6]
+res = list(set(lista1).union(lista2))
+print(res)
