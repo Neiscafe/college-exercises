@@ -52,6 +52,20 @@ def liberar_paciente(paciente):
         print(f"{paciente} em estado {deletado["condicao"]} foi liberado do manicômio!")
     else: print(f"{paciente} não está cadastrado!")
 
+def listar_pacientes():
+    if len(clientes_hospital)<1:
+        print("O manicômio está vazio!")
+        return
+    
+    for k,v in clientes_hospital.items():
+        print(f"{k}:")
+        for key, val in v.items():
+            print(f"\t{key}: {val}")
+
+def internar_paciente(pacientes: dict[str, dict[str, str]]):
+    clientes_hospital.update(pacientes)
+
+listar_pacientes()
 for k,v in dict(clientes_hospital).items():
     liberar_paciente(k)
-testar_iteracao()
+listar_pacientes()
