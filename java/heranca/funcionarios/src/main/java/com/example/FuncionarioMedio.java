@@ -5,6 +5,7 @@ public class FuncionarioMedio extends FuncionarioBasico {
 
     public FuncionarioMedio(String nome, String codigoFuncional, String nomeEscola, String nomeInstituicaoMedio) {
         super(nome, codigoFuncional, nomeEscola);
+        this.renda = renda*1.25;
         this.nomeInstituicaoMedio = nomeInstituicaoMedio;
     }
 

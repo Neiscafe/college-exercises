@@ -6,6 +6,7 @@ public class FuncionarioSuperior extends FuncionarioMedio {
     public FuncionarioSuperior(String nome, String codigoFuncional, String nomeEscola, String nomeInstituicaoMedio,
             String nomeInstituicaoSuperior) {
         super(nome, codigoFuncional, nomeEscola, nomeInstituicaoMedio);
+        super.renda = renda * 1.5;
         this.nomeInstituicaoSuperior = nomeInstituicaoSuperior;
     }
 

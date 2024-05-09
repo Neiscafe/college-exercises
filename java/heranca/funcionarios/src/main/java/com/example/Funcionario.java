@@ -3,6 +3,7 @@ package com.example;
 public class Funcionario {
     private String nome;
     private String codigoFuncional;
+    protected Double renda = 1000.0;
 
     public Funcionario(String nome, String codigoFuncional) {
         this.nome = nome;
@@ -11,7 +12,7 @@ public class Funcionario {
 
     @Override
     public String toString() {
-       String retorno = String.format("\nFuncionário\n * Nome: %s\n * Código: %s", nome, codigoFuncional);
+       String retorno = String.format("\nFuncionário\n * Nome: %s\n * Código: %s\n * Renda: %.2f", nome, codigoFuncional, renda);
        return retorno;
     }
 
@@ -29,5 +30,13 @@ public class Funcionario {
 
     public void setCodigoFuncional(String codigoFuncional) {
         this.codigoFuncional = codigoFuncional;
+    }
+    
+    public Double getRenda() {
+        return renda;
+    }
+
+    public void setRenda(Double renda) {
+        this.renda = renda;
     }
 }
