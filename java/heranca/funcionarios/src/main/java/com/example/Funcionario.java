@@ -12,7 +12,7 @@ public class Funcionario {
 
     @Override
     public String toString() {
-       String retorno = String.format("\nFuncionário\n * Nome: %s\n * Código: %s\n * Renda: %.2f", nome, codigoFuncional, renda);
+       String retorno = String.format("\nFuncionário %s: \n * Nome: %s\n * Salário: R$%.2f", codigoFuncional, nome, renda);
        return retorno;
     }
 

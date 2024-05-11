@@ -11,7 +11,7 @@ public class FuncionarioBasico extends Funcionario {
 
     @Override
     public String toString() {
-        return String.format(super.toString() + "\n * Ensino básico: %s", nomeInstituicaoBasico);
+        return String.format(super.toString() + "\n * Instituição de ensino básico: %s", nomeInstituicaoBasico);
     }
 
     public String getNomeInstituicaoBasico() {

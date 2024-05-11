@@ -12,7 +12,7 @@ public class FuncionarioSuperior extends FuncionarioMedio {
 
     @Override
     public String toString() {
-        return String.format(super.toString() + "\n * Ensino básico: %s", nomeInstituicaoSuperior);
+        return String.format(super.toString() + "\n * Instituição de ensino superior: %s", nomeInstituicaoSuperior);
     }
 
     public String getNomeInstituicaoSuperior() {

@@ -19,9 +19,7 @@ public class Main {
         funcionarios.add(f3);
         funcionarios.add(f4);
 
-        for (Funcionario f : funcionarios) {
-           printarFuncionario(f);        
-        }
+        Relatorio.imprimirRelatorio(funcionarios);
     }
     private static void printarFuncionario(Funcionario f){
         if(f instanceof FuncionarioSuperior){
