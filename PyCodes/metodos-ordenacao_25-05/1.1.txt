@@ -1,0 +1,2 @@
+Quando o bubble sort utiliza uma lista ordenada o resultado é encontrado muito mais rapidamente, pois é necessário que a lista seja iterada apenas uma vez, representando a complexidade de tempo O(n).
+

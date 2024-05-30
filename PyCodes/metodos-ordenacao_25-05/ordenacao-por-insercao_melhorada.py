@@ -16,7 +16,6 @@ def simular_atendimento_presencial(clientes):
             f"Atendendo cliente {'preferencial' if cliente['preferencial'] else 'nao preferencial'}: {cliente['nome']}"
         )
 
-
 clientes = [
     {"nome": "João", "preferencial": False},
     {"nome": "João", "preferencial": False},

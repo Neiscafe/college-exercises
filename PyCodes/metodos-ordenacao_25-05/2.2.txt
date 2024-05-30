@@ -1,0 +1,2 @@
+O merge sort funciona por meio do conceito de dividir e conquistar. Para ordenar utilizando esse meio, uma lista é dividida ao meio e recusivamente ordenada comparando os índices de maneira bottom-up, aumentando gradativamente o numero de itens comparados.
+O quick sort funciona similar ao merge sort, com a diferença de que a lista é dividida e comparada utilizando um pivot, sendo ordenada de maneira top-down.

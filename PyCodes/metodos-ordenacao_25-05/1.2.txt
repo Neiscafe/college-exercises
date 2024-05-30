@@ -1,0 +1,1 @@
+2. O mesmo caso do exercício um se repete, pois nenhum valor é trocado de índice.
