@@ -1,5 +1,5 @@
 ultimo_indice = 0
-estoque = dict()
+estoque = dict({"descricao": "asndijasndijasnd", "quantidade": 0})
 acoes = {
     "Adicionar": 1,
     "Atualizar quantidade": 2,
