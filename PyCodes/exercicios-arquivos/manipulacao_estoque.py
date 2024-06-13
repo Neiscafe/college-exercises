@@ -1,21 +1,38 @@
 import csv
 
+add = "add"
+remove = "remove"
+edit = "edit"
+find = "find"
+query = "query"
+quit = "quit"
+help = "help"
+operacoes = [add, remove, edit, find, query, quit, help]
+descricoes = [
+    "add 'nome' 'quantidade'",
+    "remove 'nome'",
+    "edit 'nome' 'quantidade'",
+    "find 'nome'",
+    "query",
+    "quit",
+    "help",
+]
 headers = ["nome", "quantidade"]
 items = []
 
 while True:
-    print("1 - Escrever")
-    print("2 - Remover")
-    print("3 - Editar")
-    print("4 - Consultar")
-    print("5 - Listar todos")
-    print("99 - Sair")
-    cmd = int(input("Informe a opcao desejada:"))
-    if cmd == 99:
+    print("\nDigite um comando ou use 'help' para ver a lista de comandos")
+    comando = str(input())
+    chaves = comando.split()
+    operacao = chaves[0]
+    if operacao == quit:
         break
-    elif cmd == 1:
-        nome = str(input("Digite o nome do produto:")).strip()
-        quantidade = int(input("Digite a quantidade:"))
+    elif operacao == help:
+        for desc in descricoes:
+            print(desc)
+    elif operacao == add:
+        nome = chaves[1]
+        quantidade = int(chaves[2])
         obj = {"nome": nome, "quantidade": quantidade}
         with open(
             file="produtos.csv", mode="r", encoding="utf-8", newline=""
@@ -33,8 +50,8 @@ while True:
                 items.append(obj)
                 writer.writerows(items)
         print("Adicionado com sucesso")
-    elif cmd == 2:
-        nome = str(input("Digite o nome do produto:")).strip()
+    elif operacao == remove:
+        nome = chaves[1]
         with open(
             file="produtos.csv", mode="r", encoding="utf-8", newline=""
         ) as csvfileread:
@@ -51,9 +68,9 @@ while True:
                     writer.writeheader()
                 writer.writerows(items)
         print("Removido com sucesso!")
-    elif cmd == 3:
-        nome = str(input("Digite o nome do produto:")).strip()
-        quantidade = int(input("Digite a quantidade do produto:"))
+    elif operacao == edit:
+        nome = chaves[1]
+        quantidade = int(chaves[2])
         with open(
             file="produtos.csv", mode="r", encoding="utf-8", newline=""
         ) as csvfileread:
@@ -72,8 +89,8 @@ while True:
                     writer.writeheader()
                 writer.writerows(items)
         print("Editado com sucesso!")
-    elif cmd == 4:
-        nome = str(input("Digite o nome do produto:")).strip()
+    elif operacao == find:
+        nome = chaves[1]
         with open(
             file="produtos.csv", mode="r", encoding="utf-8", newline=""
         ) as csvfileread:
@@ -82,7 +99,7 @@ while True:
                 if row["nome"] == nome:
                     print(row)
                     break
-    elif cmd == 5:
+    elif operacao == query:
         with open(
             file="produtos.csv", mode="r", encoding="utf-8", newline=""
         ) as csvfileread:
@@ -92,5 +109,5 @@ while True:
                 if len(items) != 0:
                     print(line)
                 items.append(line)
-    elif cmd == 99:
+    elif comando == 99:
         break
