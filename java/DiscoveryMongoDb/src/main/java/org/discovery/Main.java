@@ -24,11 +24,12 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 public class Main {
 
     public static void main(String[] args) {
-
+        TelemetryRepository repository = new TelemetryLoader().getRepository();
+        repository.buscarTodos().forEach(System.out::println);
     }
-    public static void getAll(MongoCollection<TelemetryEntity> collection){
-        collection.find().projection(Projections.excludeId()).forEach(System.out::println);
-    }
+//    public static void getAll(MongoCollection<TelemetryEntity> collection){
+//        collection.find().projection(Projections.excludeId()).forEach(System.out::println);
+//    }
 
 //    public static void changeAllSteps(MongoCollection<Document> collection, int value) {
 //        collection.updateMany(exists("steps", true), Updates.set("steps", value));

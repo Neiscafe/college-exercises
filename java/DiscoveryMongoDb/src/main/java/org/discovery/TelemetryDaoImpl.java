@@ -1,7 +1,9 @@
 package org.discovery;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Projections;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TelemetryDaoImpl implements TelemetryDao{
@@ -13,7 +15,7 @@ public class TelemetryDaoImpl implements TelemetryDao{
 
     @Override
     public List<TelemetryEntity> buscarTodos() {
-        return null;
+        return collection.find().projection(Projections.excludeId()).into(new ArrayList<>());
     }
 
     @Override
