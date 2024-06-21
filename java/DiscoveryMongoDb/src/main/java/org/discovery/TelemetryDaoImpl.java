@@ -6,16 +6,21 @@ import com.mongodb.client.model.Projections;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelemetryDaoImpl implements TelemetryDao{
+public class TelemetryDaoImpl implements TelemetryDao {
     private final MongoCollection<TelemetryEntity> collection;
 
     public TelemetryDaoImpl(MongoCollection<TelemetryEntity> collection) {
+        if(collection==null){
+            System.out.println("Null collection exception: /n");
+        }
         this.collection = collection;
     }
 
     @Override
     public List<TelemetryEntity> buscarTodos() {
-        return collection.find().projection(Projections.excludeId()).into(new ArrayList<>());
+        ArrayList<TelemetryEntity> list = new ArrayList<>();
+        collection.find().projection(Projections.excludeId()).forEach(list::add);
+        return list;
     }
 
     @Override

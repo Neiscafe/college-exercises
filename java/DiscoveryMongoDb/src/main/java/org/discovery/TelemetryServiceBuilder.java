@@ -14,17 +14,19 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 public class TelemetryServiceBuilder {
     private static String uri = "mongodb+srv://guilhermeneis132:Zv9KmkAi4p9ey5tA@discoverydb.c4g2ias.mongodb.net/?retryWrites=true&w=majority&appName=DiscoveryDB";
+    private static MongoClient mongoClient = null;
+    private static MongoDatabase database = null;
 
-    public static MongoCollection<TelemetryEntity> getTelemetryCollection(){
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
-            CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
-            MongoDatabase database = mongoClient.getDatabase("discovery_db").withCodecRegistry(pojoCodecRegistry);
-            return database.getCollection("user_telemetry", TelemetryEntity.class);
-        }catch (Exception e){
-            e.printStackTrace();
-            System.out.println("Uma exceção ocorreu!");
-            return null;
-        }
+    public static MongoCollection<TelemetryEntity> getTelemetryCollection() {
+        mongoClient = MongoClients.create(uri);
+        CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
+        CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
+        database = mongoClient.getDatabase("discovery_db").withCodecRegistry(pojoCodecRegistry);
+        return getCollection();
+    }
+
+    private static MongoCollection<TelemetryEntity> getCollection() {
+        return database.getCollection("user_telemetry", TelemetryEntity.class);
     }
 }
+
