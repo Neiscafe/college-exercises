@@ -24,8 +24,14 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 public class Main {
 
     public static void main(String[] args) {
-        TelemetryRepository repository = new TelemetryLoader().getRepository();
+        TelemetryDatabaseService.startClient();
+        var repository = createRepository();
         repository.buscarTodos().forEach(System.out::println);
+        TelemetryDatabaseService.closeClient();
+    }
+
+    private static TelemetryRepository createRepository() {
+        return new TelemetryRepository(new TelemetryDaoImpl(TelemetryDatabaseService.getCollection()));
     }
 //    public static void getAll(MongoCollection<TelemetryEntity> collection){
 //        collection.find().projection(Projections.excludeId()).forEach(System.out::println);
