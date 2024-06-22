@@ -1,4 +1,4 @@
-package org.discovery;
+package org.discovery.entities;
 
 import java.util.Objects;
 
@@ -10,9 +10,9 @@ public class TelemetryEntity {
     private float umidade;
     private LocalizacaoEntity localizacaoEntity;
 
-    public TelemetryEntity() {
-    }
+    public TelemetryEntity(){}
 
+    //region construtor principal, getters, setters, toString, equals, hashCode aqui
     public TelemetryEntity(String sensorId, float temperatura, float frequenciaCardiaca, int passos, float umidade, LocalizacaoEntity localizacaoEntity) {
         this.sensorId = sensorId;
         this.temperatura = temperatura;
@@ -94,4 +94,5 @@ public class TelemetryEntity {
                 ", localizacao=" + localizacaoEntity +
                 '}';
     }
+    //endregion
 }

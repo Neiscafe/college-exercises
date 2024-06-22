@@ -1,4 +1,4 @@
-package org.discovery;
+package org.discovery.entities;
 
 import java.util.Objects;
 
@@ -6,6 +6,9 @@ public class LocalizacaoEntity {
     private double latitude;
     private double longitude;
 
+    public LocalizacaoEntity() {}
+
+    //region construtor principal, getters, setters, toString, equals, hashCode aqui
     public double getLongitude() {
         return longitude;
     }
@@ -47,4 +50,5 @@ public class LocalizacaoEntity {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+    //endregion
 }

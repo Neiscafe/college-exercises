@@ -3,61 +3,80 @@ package org.discovery;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Projections;
-import com.mongodb.client.model.Updates;
-import org.bson.Document;
-import org.bson.codecs.configuration.CodecProvider;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
-import org.bson.conversions.Bson;
+import org.discovery.dao.TelemetryDaoImpl;
+import org.discovery.entities.LocalizacaoEntity;
+import org.discovery.entities.TelemetryEntity;
+import org.discovery.repository.TelemetryRepository;
+import org.discovery.services.TelemetryDatabaseService;
 
-import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
-import static com.mongodb.client.model.Filters.*;
-import static com.mongodb.client.model.Projections.*;
+import java.util.List;
+import java.util.UUID;
+
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 public class Main {
+    static TelemetryRepository repository;
 
     public static void main(String[] args) {
         TelemetryDatabaseService.startClient();
-        var repository = createRepository();
-        repository.buscarTodos().forEach(System.out::println);
+        repository = createRepository();
         TelemetryDatabaseService.closeClient();
+    }
+
+    private static void updateLocalizacaoExample() {
+        var query = printAndReturnQueryAntes();
+        repository.updateLocalizacao(query.getFirst().getSensorId(), 100, 200);
+        printAndReturnQueryDepois();
+    }
+
+    private static void insertExample() {
+        printAndReturnQueryAntes();
+        repository.insert(createEntity());
+        printAndReturnQueryDepois();
+    }
+
+    private static void replaceExample() {
+        var query = printAndReturnQueryAntes();
+        var toBeReplaced = alterEntityFields(query);
+        repository.replace(toBeReplaced);
+        printAndReturnQueryDepois();
+    }
+
+    private static void removeExample() {
+        var query = printAndReturnQueryAntes();
+        repository.remove(query.getFirst().getSensorId());
+        printAndReturnQueryDepois();
+    }
+
+    private static TelemetryEntity alterEntityFields(List<TelemetryEntity> query) {
+        var toBeReplaced = query.getFirst();
+        toBeReplaced.setPassos(9999);
+        toBeReplaced.setFrequenciaCardiaca(99.99f);
+        toBeReplaced.setUmidade(100.1f);
+        return toBeReplaced;
+    }
+
+    private static TelemetryEntity createEntity() {
+        return new TelemetryEntity(UUID.randomUUID().toString(), 20f, 60f, 1200, 84f, new LocalizacaoEntity(-27.7131, -52.4316));
     }
 
     private static TelemetryRepository createRepository() {
         return new TelemetryRepository(new TelemetryDaoImpl(TelemetryDatabaseService.getCollection()));
     }
-//    public static void getAll(MongoCollection<TelemetryEntity> collection){
-//        collection.find().projection(Projections.excludeId()).forEach(System.out::println);
-//    }
 
-//    public static void changeAllSteps(MongoCollection<Document> collection, int value) {
-//        collection.updateMany(exists("steps", true), Updates.set("steps", value));
-//    }
-//
-//    public static void findAllUserSteps(MongoCollection<Document> colletion) {
-//        Bson projectionFields = Projections.fields(Projections.include("steps", "username"), Projections.excludeId());
-//        var docs = colletion.find(and(exists("steps", true), gt("steps", 0))).projection(projectionFields);
-//        docs.forEach((t) -> {
-//            System.out.println(t.toJson());
-//        });
-//    }
-//
-//    public static void findAllUsers(MongoCollection<Document> collection) {
-//        collection.find().projection(fields(include("username"), excludeId())).forEach((t) -> {
-//            System.out.println(t.toJson());
-//        });
-//    }
-//
-//    public static void printEntireDb(MongoCollection<Document> collection) {
-//        collection.find().projection(Projections.excludeId()).forEach((t) -> {
-//            System.out.println(t.toBsonDocument());
-//        });
-//    }
+    private static List<TelemetryEntity> printAndReturnQueryAntes() {
+        return printAndReturnQuery("Antes:");
+    }
+
+    private static List<TelemetryEntity> printAndReturnQueryDepois() {
+        return printAndReturnQuery("Depois:");
+    }
+
+    private static List<TelemetryEntity> printAndReturnQuery(String message) {
+        var query = repository.query();
+        System.out.println(message);
+        query.forEach(System.out::println);
+        return query;
+    }
 }

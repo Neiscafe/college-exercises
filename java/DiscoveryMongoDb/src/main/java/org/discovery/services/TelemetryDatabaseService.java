@@ -1,4 +1,4 @@
-package org.discovery;
+package org.discovery.services;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -7,19 +7,21 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.discovery.DBFIELDS;
+import org.discovery.entities.TelemetryEntity;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 public class TelemetryDatabaseService {
-    private static String uri = "mongodb+srv://guilhermeneis132:Zv9KmkAi4p9ey5tA@discoverydb.c4g2ias.mongodb.net/?retryWrites=true&w=majority&appName=DiscoveryDB";
+    private static String atlasUri = "mongodb+srv://" + DBFIELDS.DB_USER + ":" + DBFIELDS.DB_PSWD + "@discoverydb.c4g2ias.mongodb.net/?retryWrites=true&w=majority&appName=DiscoveryDB";
     private static MongoClient mongoClient = null;
     private static MongoDatabase database = null;
 
     public static void startClient() {
-        if(mongoClient==null) {
-            mongoClient = MongoClients.create(uri);
+        if (mongoClient == null) {
+            mongoClient = MongoClients.create(atlasUri);
         }
         loadDatabase();
     }
