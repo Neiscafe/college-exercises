@@ -10,7 +10,8 @@ public class TelemetryEntity {
     private float umidade;
     private LocalizacaoEntity localizacaoEntity;
 
-    public TelemetryEntity(){}
+    public TelemetryEntity() {
+    }
 
     //region construtor principal, getters, setters, toString, equals, hashCode aqui
     public TelemetryEntity(String sensorId, float temperatura, float frequenciaCardiaca, int passos, float umidade, LocalizacaoEntity localizacaoEntity) {
@@ -85,14 +86,7 @@ public class TelemetryEntity {
 
     @Override
     public String toString() {
-        return "TelemetryEntity{" +
-                "sensorId='" + sensorId + '\'' +
-                ", temperatura=" + temperatura +
-                ", frequenciaCardiaca=" + frequenciaCardiaca +
-                ", passos=" + passos +
-                ", umidade=" + umidade +
-                ", localizacao=" + localizacaoEntity +
-                '}';
+        return " - sensorId: " + sensorId + "\n\ttemperatura: " + temperatura + "\n\tfrequenciaCardiaca: " + frequenciaCardiaca + "\n\tpassos: " + passos + "\n\tumidade: " + umidade + localizacaoEntity+"\n";
     }
     //endregion
 }

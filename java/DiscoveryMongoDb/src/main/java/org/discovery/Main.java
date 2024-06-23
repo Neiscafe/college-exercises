@@ -9,7 +9,9 @@ import org.discovery.entities.TelemetryEntity;
 import org.discovery.repository.TelemetryRepository;
 import org.discovery.services.TelemetryDatabaseService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.UUID;
 
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
@@ -21,7 +23,54 @@ public class Main {
     public static void main(String[] args) {
         TelemetryDatabaseService.startClient();
         repository = createRepository();
+        showUserOptions();
         TelemetryDatabaseService.closeClient();
+    }
+
+    private static void showUserOptions() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> items = new ArrayList<>();
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("Escolha uma opção:");
+            System.out.println("1 - Listar");
+            System.out.println("2 - Adicionar");
+            System.out.println("3 - Buscar");
+            System.out.println("4 - Excluir");
+            System.out.println("5 - Editar");
+            System.out.println("6 - Sair");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();  // Consumir nova linha
+            switch (choice) {
+                case 1:
+                    repository.query().forEach(System.out::println);
+                    break;
+                case 2:
+                    System.out.println("Adicionando um exemplo!");
+                    insertExample();
+                    break;
+                case 3:
+                    System.out.println("Buscando o primeiro resultado da query!");
+                    findExample();
+                    break;
+                case 4:
+                    System.out.println("Removendo o primeiro resultado da query!");
+                    removeExample();
+                    break;
+                case 5:
+                    System.out.println("Editando o primeiro resultado da query!");
+                    replaceExample();
+                    break;
+                case 6:
+                    System.out.println("Saindo...");
+                    scanner.close();
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
     }
 
     private static void updateLocalizacaoExample() {
@@ -47,6 +96,12 @@ public class Main {
         var query = printAndReturnQueryAntes();
         repository.remove(query.getFirst().getSensorId());
         printAndReturnQueryDepois();
+    }
+
+    private static void findExample() {
+        var query = printAndReturnQueryAntes();
+        var document = repository.find(query.getFirst().getSensorId());
+        System.out.println(document);
     }
 
     private static TelemetryEntity alterEntityFields(List<TelemetryEntity> query) {

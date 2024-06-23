@@ -6,7 +6,8 @@ public class LocalizacaoEntity {
     private double latitude;
     private double longitude;
 
-    public LocalizacaoEntity() {}
+    public LocalizacaoEntity() {
+    }
 
     //region construtor principal, getters, setters, toString, equals, hashCode aqui
     public double getLongitude() {
@@ -27,10 +28,7 @@ public class LocalizacaoEntity {
 
     @Override
     public String toString() {
-        return "LocalizacaoEntity{" +
-                "latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
+        return "\n\tlatitude: " + latitude + "\n\tlongitude: " + longitude;
     }
 
     @Override
