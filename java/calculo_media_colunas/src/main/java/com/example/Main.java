@@ -32,7 +32,7 @@ public class Main {
                     }
                 }
             }
-            mediaMatriz(matrizValores);
+            mediaLinhas(matrizValores);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
