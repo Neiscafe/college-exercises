@@ -25,6 +25,12 @@ def my_start_countdown(tempo):
 #     newInput = str(input(""))
 #     print(newInput)
 
+#  ideia: usar o getch para pegar os caracteres escritos, e guardar em uma lista que é 
+#  printada sempre no mesmo lugar da tela.
+#  adicionar e remover de acordo com a ação do usuário
+#  toda vez que acontecer uma repetição do loop, jogar o cursor pra linha certa
+
+
 while True:
     inputted_value = str(input("Esperando input:"))
     comandos = inputted_value.split()
